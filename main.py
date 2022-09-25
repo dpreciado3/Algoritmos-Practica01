@@ -1,4 +1,5 @@
 from Grafica import Grafica
+import copy
 
 
 def main():
@@ -29,15 +30,22 @@ def parse_graph_from_txt():
 
 
 def conjunto_independiente(grafica):
+    # Caso base: |V| = 0
+    if grafica.get_orden() == 0:
+        return []
+    # Caso base: |V| = 1
     if grafica.get_orden() == 1:
         return grafica.get_vertices()
-    # Quitamos algún nodo random
+    # Quitamos algún nodo random y su vecindad
     removido = grafica.get_vertices()[0]
-    subgrafica = grafica
-    subgrafica.quita_vertice(removido)
+    removido_vecinos = grafica.get_vecinos(removido)
+    removido_vecinos.append(removido)
+    subgrafica = copy.deepcopy(grafica)
+    for i in removido_vecinos:
+        subgrafica.quita_vertice(i)
     independiente = conjunto_independiente(subgrafica)
     # Hay dos conjuntos independientes, el que ya teníamos y el nuevo uniendo el vértice que se removió
-    independiente_u = independiente
+    independiente_u = copy.deepcopy(independiente)
     independiente_u.append(removido)
     if es_independiente(independiente_u, grafica):
         return independiente_u

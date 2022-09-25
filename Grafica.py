@@ -9,6 +9,16 @@ class Grafica:
     def get_vecinos(self, i):
         return self.dicc_adyacencias[i]
 
+    def get_ingrado(self, i):
+        ingrado = 0
+        for x in self.dicc_adyacencias:
+            if i in self.dicc_adyacencias[x]:
+                ingrado += 1
+        return ingrado
+
+    def get_exgrado(self, i):
+        return len(self.dicc_adyacencias[i])
+
     def get_vertices(self):
         return list(self.dicc_adyacencias.keys())
 
