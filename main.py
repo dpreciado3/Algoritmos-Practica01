@@ -32,12 +32,13 @@ def conjunto_independiente(grafica):
     if grafica.get_orden() == 1:
         return grafica.get_vertices()
     # Quitamos algún nodo random
+    removido = grafica.get_vertices()[0]
     subgrafica = grafica
-    removido = subgrafica.quita_vertice(grafica.get_vertices()[0])
+    subgrafica.quita_vertice(removido)
     independiente = conjunto_independiente(subgrafica)
     # Hay dos conjuntos independientes, el que ya teníamos y el nuevo uniendo el vértice que se removió
     independiente_u = independiente
-    independiente_u.append(removido[0])
+    independiente_u.append(removido)
     if es_independiente(independiente_u, grafica):
         return independiente_u
     else:
