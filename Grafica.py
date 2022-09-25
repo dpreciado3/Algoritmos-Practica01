@@ -1,6 +1,6 @@
 class Grafica:
 
-    def __init__(self,dicc_adyacencias):
+    def __init__(self, dicc_adyacencias):
         self.dicc_adyacencias = dicc_adyacencias
 
     def __str__(self):
@@ -10,12 +10,12 @@ class Grafica:
         return self.dicc_adyacencias[i]
 
     def get_vertices(self):
-        return self.dicc_adyacencias.keys()
-    
+        return list(self.dicc_adyacencias.keys())
+
     def get_orden(self):
         return len(self.dicc_adyacencias.keys())
 
-    # Regresa una tupla donde el primer elemento es el vértice removido, el segundo su exvecindad y el tercero su invecindad 
+    # Regresa una tupla donde el primer elemento es el vértice removido, el segundo su exvecindad y el tercero su invecindad
     def quita_vertice(self, vertice):
         exvecindad = self.dicc_adyacencias[vertice]
         invecindad = []
