@@ -35,8 +35,6 @@ def conjunto_independiente(grafica):
     subgrafica = grafica
     removido = subgrafica.quita_vertice(subgrafica.get_vertices()[0])
     independiente = conjunto_independiente(subgrafica)
-    if independiente == None:
-        independiente = []
     # Hay dos conjuntos independientes, el que ya teníamos y el nuevo uniendo el vértice que se removió
     independiente_u = independiente
     independiente_u.append(removido[0])
@@ -47,9 +45,6 @@ def conjunto_independiente(grafica):
 
 
 def es_independiente(conjunto, grafica):
-    if conjunto == None or conjunto == []:
-        conjunto = []
-        return True
     vertices = grafica.get_vertices()
     for i in conjunto:
         otros = [x for x in vertices if x != i]
